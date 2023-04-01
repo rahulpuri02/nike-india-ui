@@ -1,3 +1,4 @@
+import HeroBanner from '@/components/HeroBanner'
 import Head from 'next/head'
 
 
@@ -10,8 +11,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className='h-[300vh]'>
-      <div className='mx-2 pl-4'>hello world</div>
+      <main className='h-[55vh]'>
+      <HeroBanner />
       </main>
     </>
   )
