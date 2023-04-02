@@ -1,4 +1,5 @@
 import ProductDetailsCrousal from '@/components/ProductDetailsCarousel'
+import RelatedProducts from '@/components/RelatedProducts'
 import Wrapper from '@/components/Wrapper'
 import React from 'react'
 import { IoMdHeartEmpty } from 'react-icons/io'
@@ -117,7 +118,7 @@ const ProductDetails = () => {
                 </button>
                 {/* ADD TO CART BUTTON END */}
 
-                {/* WHISHLIST BUTTON START */}
+                {/* WISHLIST BUTTON START */}
                 <button className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10">
                     Wishlist
                     <IoMdHeartEmpty size={20} />
@@ -129,12 +130,18 @@ const ProductDetails = () => {
                         Product Details
                     </div>
                     <div className="markdown text-md mb-5">
-                        <ReactMarkdown>"You've got the hops and the speed—lace up in shoes that enhance what you bring to the court. The latest AJ is all about take-offs and landings, with multiple Air units to get you off the ground. The upper is made with strong, reinforced leno-weave fabric that'll keep you contained and leave your game uncompromised. This low-top model is designed for playing on outdoor courts.</ReactMarkdown>
+                        <ReactMarkdown>You've got the hops and the speed—lace up in shoes that enhance what you bring to the court. The latest AJ is all about take-offs and landings, with multiple Air units to get you off the ground. The upper is made with strong, reinforced leno-weave fabric that'll keep you contained and leave your game uncompromised. This low-top model is designed for playing on outdoor courts.</ReactMarkdown>
                     </div>
+                    <ol className="-mr[12px] text-md  mb-5">
+                        <li>Colour Shown: Sesame/Chambray</li>
+                        <li>Style: DN2647-200</li>
+                    </ol>
                 </div>
             </div>
             {/* right column end */}
         </div>
+
+        <RelatedProducts />
 
     </Wrapper>
 </div>
