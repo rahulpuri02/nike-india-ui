@@ -33,7 +33,7 @@ const Menu = ({showCatMenu, setShowCatMenu}) => {
             <BsChevronDown size={14} />
             
             {showCatMenu && (
-                <ul className='bg-white absolute top-6 left-0 min-w-[220px] p-1 text-black shadow-lg'>
+                <ul className='bg-white absolute top-6 left-0 min-w-[220px] p-1 md:my-1 text-black shadow-lg'>
                  {subMenuData.map((submenu) => {
                     return (
                         <Link key={submenu.id} href="/"   onClick={() => setShowCatMenu(false)}>
