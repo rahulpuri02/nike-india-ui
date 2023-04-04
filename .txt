@@ -1,0 +1,3 @@
+postgres://nikeindia_user:UN0TELt40WvFHfoXoGaP8eSeZh6M0whS@dpg-cgm804nh1dgnfa0vei60-a.singapore-postgres.render.com/nikeindia
+
+dpg-cgm804nh1dgnfa0vei60-a.singapore-postgres.render.com
