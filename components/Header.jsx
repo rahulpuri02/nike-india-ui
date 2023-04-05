@@ -99,7 +99,7 @@ const Header = ({className}) => {
       <div className='w-8 h-9 md:w-11 md:h-11 rounded-full flex justify-center items-center 
       hover:bg-black/[0.05] cursor-pointer relative'>
       <BsCart  className='text-[15px] md:text-[20px]'/>
-       <div className='h-[14px] md:h-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] flex justify-center items-center py-0.5 px-1'>5</div>
+       <div className='h-[14px] md:h-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] flex justify-center items-center py-[1px] px-1'>5</div>
       </div>
 
        {/*search-Icon Start  */}

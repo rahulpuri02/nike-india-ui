@@ -4,6 +4,14 @@ import {BsChevronDown} from 'react-icons/bs';
 
 
 const MobileMenu = ({showCatMenu, setShowCatMenu, setMobileMenu, categories}) => {
+ 
+
+  const data = [
+    { id: 1, name: "Home", url: "/" },
+    { id: 2, name: "Categories", subMenu: true },
+    { id: 3, name: "Contact", url: "/contact" },
+];
+
 
   return (
     <ul className='flex flex-col md:hidden font-semibold absolute top-[50px] left-0 w-full h-[calc(100vh - 50px)] bg-white text-black'>

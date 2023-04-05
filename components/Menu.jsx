@@ -34,7 +34,8 @@ const Menu = ({showCatMenu, setShowCatMenu, categories}) => {
             
             {showCatMenu && (
                 <ul className='bg-white absolute top-6 left-0 min-w-[220px] p-1 md:my-1 text-black shadow-lg'>
-                 {categories.map(({attributes : c, id}) => {
+                 {categories?.map(
+                  ({ attributes: c, id }) => {
                     return (
                         <Link key={c.id} href={`/category/${c.slug}`}   onClick={() => setShowCatMenu(false)}>
                         <li className='h-12 flex justify-between items-center  pl-5 pr-3 text-sm hover:bg-black/[0.03] rounded-lg'>{c.name}                        

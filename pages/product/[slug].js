@@ -1,20 +1,27 @@
 import ProductDetailsCrousal from '@/components/ProductDetailsCarousel'
 import RelatedProducts from '@/components/RelatedProducts'
 import Wrapper from '@/components/Wrapper'
+import { fetchDataFromAPI } from '@/utils/api'
+import { getDiscountedPricePercent } from '@/utils/helper'
 import { data } from 'autoprefixer'
-import React from 'react'
+import React, { useState } from 'react'
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 
 
-const ProductDetails = () => {
+const ProductDetails = ({product, relativeProducts}) => {
+
+    const p = product?.data[0]?.attributes;
+
+    const[selectedSize, setSelectedSize] = useState();
+
   return (
     <div className="w-full md:py-20">
     <Wrapper>
         <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
             {/* left column start */}
             <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
-                <ProductDetailsCrousal/>
+                <ProductDetailsCrousal images={p.image.data} />
             </div>
             {/* left column end */}
 
@@ -22,26 +29,26 @@ const ProductDetails = () => {
             <div className="flex-[1] py-3">
                 {/* PRODUCT TITLE */}
                 <div className="text-[34px] font-medium mb-2 leading-tight">
-                Air Jordan XXXVII Low PF
+                {p.name}
                 </div>
 
                 {/* PRODUCT SUBTITLE */}
                 <div className="text-lg font-medium mb-5">
-                Men's Basketball Shoes
+                {p.subtitle}
                 </div>
 
                 {/* PRODUCT PRICE */}
                 <div className="flex items-center">
                     <p className="mr-2 text-lg font-medium">
-                        MRP : $200
+                        Price : &#8377;{p.price}
                     </p>
 
                         <>
                             <p className="text-base  font-medium line-through">
-                                &#8377; $180
+                                &#8377;{p.ogprice}
                             </p>
                             <p className="ml-auto text-base font-medium text-green-500">                               
-                               10 % off
+                               {getDiscountedPricePercent(p.ogprice, p.price)}% off
                             </p>
                         </>
 
@@ -69,31 +76,18 @@ const ProductDetails = () => {
                         id="sizesGrid"
                         className="grid grid-cols-3 gap-2"
                     >
-                    <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
-                        UK 5
-                    </div>
-                    <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
-                        UK 5
-                    </div>
-                    <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
-                        UK 5
-                    </div>
-                    <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
-                        UK 5
-                    </div>
-                    <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
-                        UK 5
-                    </div>
-                     <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
-                        UK 5
-                    </div> <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
-                        UK 5
-                    </div>
-                     <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
-                        UK 5
-                    </div> <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
-                        UK 5
-                    </div>
+                    
+                        {p?.size?.data.map((s) => (
+                        <div key={s.id} 
+                        onClick={
+                            setSelectedSize(s.size)
+                        }
+                        className=' border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
+                            {s.size}
+                            </div>
+                        ))}
+                
+                    
                   
 
                     </div>
@@ -129,18 +123,14 @@ const ProductDetails = () => {
                         Product Details
                     </div>
                     <div className="markdown text-md mb-5">
-                        <ReactMarkdown>You've got the hops and the speed—lace up in shoes that enhance what you bring to the court. The latest AJ is all about take-offs and landings, with multiple Air units to get you off the ground. The upper is made with strong, reinforced leno-weave fabric that'll keep you contained and leave your game uncompromised. This low-top model is designed for playing on outdoor courts.</ReactMarkdown>
+                        <ReactMarkdown>{p.description}</ReactMarkdown>
                     </div>
-                    <ol className="-mr[12px] text-md  mb-5">
-                        <li>Colour Shown: Sesame/Chambray</li>
-                        <li>Style: DN2647-200</li>
-                    </ol>
                 </div>
             </div>
             {/* right column end */}
         </div>
 
-        <RelatedProducts />
+        
 
     </Wrapper>
 </div>
@@ -148,3 +138,37 @@ const ProductDetails = () => {
 }
 
 export default ProductDetails
+
+
+// `getStaticPaths` requires using `getStaticProps`
+
+  
+export async function getStaticPaths() {
+    const products = await fetchDataFromAPI("/api/products?populate=*");
+    const paths = products?.data?.map((p) => ({
+        params: {
+            slug: p.attributes.slug,
+        },
+    }));
+
+    return {
+        paths,
+        fallback: false,
+    };
+}
+
+export async function getStaticProps({ params: { slug } }) {
+    const product = await fetchDataFromAPI(
+        `/api/products?populate=*&filters[slug][$eq]=${slug}`
+    );
+    const relativeProducts = await fetchDataFromAPI(
+        `/api/products?populate=*&[filters][slug][$ne]=${slug}`
+    );
+
+    return {
+        props: {
+            product,
+            relativeProducts,
+        },
+    };
+}
