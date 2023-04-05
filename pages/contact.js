@@ -7,6 +7,7 @@ const contact = () => {
     <main>
     <Contact />
     </main>
+
   )
 }
 

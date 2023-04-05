@@ -9,6 +9,7 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { GrSearch } from "react-icons/gr";
 import { VscChromeClose } from "react-icons/vsc";
 import MobileMenu from './MobileMenu';
+import { fetchDataFromAPI } from '@/utils/api';
 
 const Header = ({className}) => {
  
@@ -16,10 +17,12 @@ const Header = ({className}) => {
   const[showCatMenu, setShowCatMenu] = useState(false);
   const[show, setShow] = useState("translate-y-0");
   const[LastScrollY, setLastScrollY] = useState(0);
+  const[categories, setCategories] = useState(null);
+
   
   const controlNavbar = () => {
    if(window.scrollY > 200) {
-    if(window.scrollY > LastScrollY && !mobileMenu){
+    if(window.scrollY > LastScrollY){
       setShow("-translate-y-[80px]")
     }else {
       setShow("shadow-sm]")
@@ -42,6 +45,20 @@ const Header = ({className}) => {
     )
   }, [LastScrollY])
 
+  
+  useEffect(() => {
+    fetchCategories();
+  }, [])
+
+  const fetchCategories = async () => {
+   
+    const {data} = await fetchDataFromAPI('/api/categories?populate=*')
+     
+    setCategories(data);
+ 
+
+  }
+
 
   return (
     <div className={`w-full h-[50px] md:h-20 bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 
@@ -50,14 +67,18 @@ const Header = ({className}) => {
       <Link href={'/'}>
       <img className='w-10 md:w-15' src="/logo.svg" alt="logo" />
       </Link>
-      <Menu showCatMenu={showCatMenu} setShowCatMenu={setShowCatMenu} />
+      <Menu
+       showCatMenu={showCatMenu} 
+       setShowCatMenu={setShowCatMenu}
+       categories={categories} />
        
        {
         mobileMenu && (
         <MobileMenu 
       showCatMenu={showCatMenu} 
       setShowCatMenu={setShowCatMenu}
-      setMobileMenu={setMobileMenu}/> 
+      setMobileMenu={setMobileMenu}
+      categories={categories}/> 
         )
        }
 

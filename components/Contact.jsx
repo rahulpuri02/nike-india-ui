@@ -4,12 +4,14 @@ const Contact = () => {
 
   return (
     <div className="container my-6 px-6 mx-auto">
-    <section className="mb-32 text-gray-800">
+    <section className="mb-5 text-gray-800">
       <div className="flex justify-center">
         <div className="text-center lg:max-w-3xl md:max-w-xl">
-          <h2 className="text-3xl font-bold mb-18 md:mb-[100px] px-6">Contact us</h2>
+          <h2 className="text-3xl font-bold mb-[40px] md:mb-[100px] ">Contact us</h2>
         </div>
       </div>
+      
+      <br/>
   
       <div className="flex flex-wrap">
         <div className="grow-0 shrink-0 basis-auto mb-12 lg:mb-0 w-full lg:w-5/12 px-3 lg:px-6">
@@ -106,7 +108,7 @@ const Contact = () => {
                 <div className="grow ml-6">
                   <p className="font-bold mb-1">Technical support</p>
                   <p className="text-gray-500">support@nike.com</p>
-                  <p className="text-gray-500">+1 234-567-89</p>
+                  <p className="text-gray-500">800 919 0566</p>
                 </div>
               </div>
             </div>
@@ -125,7 +127,7 @@ const Contact = () => {
                 <div className="grow ml-6">
                   <p className="font-bold mb-1">Sales questions</p>
                   <p className="text-gray-500">sales@nike.com</p>
-                  <p className="text-gray-500">+1 234-567-89</p>
+                  <p className="text-gray-500">800 919 0566</p>
                 </div>
               </div>
             </div>
@@ -144,7 +146,7 @@ const Contact = () => {
                 <div className="grow ml-6">
                   <p className="font-bold mb-1">Press</p>
                   <p className="text-gray-500">press@nike.com</p>
-                  <p className="text-gray-500">+1 234-567-89</p>
+                  <p className="text-gray-500">800 919 0566</p>
                 </div>
               </div>
             </div>
@@ -163,7 +165,7 @@ const Contact = () => {
                 <div className="grow ml-6">
                   <p className="font-bold mb-1">Bug report</p>
                   <p className="text-gray-500">bugs@nike.com</p>
-                  <p className="text-gray-500">+1 234-567-89</p>
+                  <p className="text-gray-500">800 919 0566</p>
                 </div>
               </div>
             </div>
