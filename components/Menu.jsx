@@ -8,7 +8,7 @@ const Menu = ({showCatMenu, setShowCatMenu}) => {
     const data = [
         { id: 1, name: "Home", url: "/" },
         { id: 2, name: "Categories", subMenu: true },
-        { id: 3, name: "Contact", url: "/" },
+        { id: 3, name: "Contact", url: "/contact" },
     ]
 
     const subMenuData = [

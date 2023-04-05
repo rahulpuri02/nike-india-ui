@@ -6,6 +6,7 @@ import Menu from './Menu';
 import { IoMdHeartEmpty } from "react-icons/io";
 import { BsCart } from "react-icons/bs";
 import { BiMenuAltRight } from "react-icons/bi";
+import { GrSearch } from "react-icons/gr";
 import { VscChromeClose } from "react-icons/vsc";
 import MobileMenu from './MobileMenu';
 
@@ -62,21 +63,30 @@ const Header = ({className}) => {
 
        {/*Icons start */}
 
-      <div className='flex items-center gap-[18px] md:gap-[12px] text-black'>
+      <div className='flex items-center gap-[12px] md:gap-[9px] text-black'>
        
-       {/*heart-Icon Start */}
+
+       {/*heart-Icon Start 
       <div className='w-8 h-9 md:w-11 md:h-11 rounded-full flex justify-center items-center 
       hover:bg-black/[0.05] cursor-pointer relative'>
       <IoMdHeartEmpty  className='text-[18px] md:text-[21px]'/>
        <div className='h-[14px] md:h-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] flex justify-center items-center py-0.5 px-1'>12</div>
       </div>
-      
-       {/*Cart-Icon Start */}
+      */}
+
+        {/*Cart-Icon Start */}
       <div className='w-8 h-9 md:w-11 md:h-11 rounded-full flex justify-center items-center 
       hover:bg-black/[0.05] cursor-pointer relative'>
       <BsCart  className='text-[15px] md:text-[20px]'/>
        <div className='h-[14px] md:h-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] flex justify-center items-center py-0.5 px-1'>5</div>
       </div>
+
+       {/*search-Icon Start  */}
+       <div className='w-8 h-8 md:w-11 md:h-11 rounded-full flex justify-center items-center 
+      hover:bg-black/[0.05] cursor-pointer relative'>
+      <GrSearch  className='text-[18px] md:text-[21px]'/>
+      </div>
+
        {/*Icons -end */}
       
       {/*Mobile View Start*/}
