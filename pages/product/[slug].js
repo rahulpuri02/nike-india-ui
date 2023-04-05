@@ -1,6 +1,7 @@
 import ProductDetailsCrousal from '@/components/ProductDetailsCarousel'
 import RelatedProducts from '@/components/RelatedProducts'
 import Wrapper from '@/components/Wrapper'
+import { data } from 'autoprefixer'
 import React from 'react'
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
@@ -116,12 +117,12 @@ const ProductDetails = () => {
                 </button>
                 {/* ADD TO CART BUTTON END */}
 
-                {/* WISHLIST BUTTON START */}
+                {/* favourite button start */}
                 <button className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10">
-                    Favoirate
+                Favourite
                     <IoMdHeartEmpty size={20} />
                 </button>
-                {/* Wishlist BUTTON END */}
+                {/* favourite  button end */}
 
                 <div>
                     <div className="text-lg font-medium mb-5">

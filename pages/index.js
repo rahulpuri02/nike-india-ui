@@ -3,21 +3,11 @@ import ProductCard from '@/components/ProductCard'
 import Wrapper from '@/components/Wrapper'
 import { fetchDataFromAPI } from '@/utils/api';
 import Head from 'next/head'
-import { useEffect, useState } from 'react';
 
 
-export default function Home() {
-  const [data, setData] = useState(null);
- 
- useEffect(() => {
-  fetchProducts();
- } , [])
 
- const fetchProducts =  async () => {
- const {data} =  await fetchDataFromAPI('/api/products');
-  setData(data);
+export default function Home({ products }) {
   
- }
   return (
     <>
       <Head>
@@ -45,18 +35,24 @@ export default function Home() {
 
                 {/*Product Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14 px-5 md:px-0">
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                   {
+                   products?.data?.map((product) => (
+                      <ProductCard key={product?.id} data={product} />
+                    ))
+                   }
                 </div>
 
       </Wrapper>
       </main>
     </>
   )
+}
+
+
+export async function getStaticProps() {
+  const products = await fetchDataFromAPI("/api/products?populate=*");
+
+  return {
+      props: { products },
+  };
 }
