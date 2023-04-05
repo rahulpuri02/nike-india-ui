@@ -5,6 +5,7 @@ import React from 'react'
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 
+
 const ProductDetails = () => {
   return (
     <div className="w-full md:py-20">
@@ -19,18 +20,18 @@ const ProductDetails = () => {
             {/* right column start */}
             <div className="flex-[1] py-3">
                 {/* PRODUCT TITLE */}
-                <div className="text-[34px] font-semibold mb-2 leading-tight">
+                <div className="text-[34px] font-medium mb-2 leading-tight">
                 Air Jordan XXXVII Low PF
                 </div>
 
                 {/* PRODUCT SUBTITLE */}
-                <div className="text-lg font-semibold mb-5">
+                <div className="text-lg font-medium mb-5">
                 Men's Basketball Shoes
                 </div>
 
                 {/* PRODUCT PRICE */}
                 <div className="flex items-center">
-                    <p className="mr-2 text-lg font-semibold">
+                    <p className="mr-2 text-lg font-medium">
                         MRP : $200
                     </p>
 
@@ -58,9 +59,6 @@ const ProductDetails = () => {
                     <div className="flex justify-between mb-2">
                         <div className="text-md font-semibold">
                             Select Size
-                        </div>
-                        <div className="text-md font-medium text-black/[0.5] cursor-pointer">
-                            Select Guide
                         </div>
                     </div>
                     {/* HEADING END */}
@@ -120,13 +118,13 @@ const ProductDetails = () => {
 
                 {/* WISHLIST BUTTON START */}
                 <button className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10">
-                    Wishlist
+                    Favoirate
                     <IoMdHeartEmpty size={20} />
                 </button>
                 {/* Wishlist BUTTON END */}
 
                 <div>
-                    <div className="text-lg font-bold mb-5">
+                    <div className="text-lg font-medium mb-5">
                         Product Details
                     </div>
                     <div className="markdown text-md mb-5">

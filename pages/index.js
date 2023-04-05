@@ -1,10 +1,23 @@
 import HeroBanner from '@/components/HeroBanner'
 import ProductCard from '@/components/ProductCard'
 import Wrapper from '@/components/Wrapper'
+import { fetchDataFromAPI } from '@/utils/api';
 import Head from 'next/head'
+import { useEffect, useState } from 'react';
 
 
 export default function Home() {
+  const [data, setData] = useState(null);
+ 
+ useEffect(() => {
+  fetchProducts();
+ } , [])
+
+ const fetchProducts =  async () => {
+ const {data} =  await fetchDataFromAPI('/api/products');
+  setData(data);
+  
+ }
   return (
     <>
       <Head>
