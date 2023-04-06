@@ -14,6 +14,7 @@ const ProductDetails = ({product, relativeProducts}) => {
     const p = product?.data[0]?.attributes;
 
     const[selectedSize, setSelectedSize] = useState();
+    const[showError, setShowError] = useState(false);
 
   return (
     <div className="w-full md:py-20">
@@ -77,13 +78,16 @@ const ProductDetails = ({product, relativeProducts}) => {
                         className="grid grid-cols-3 gap-2"
                     >
                     
-                        {p?.size?.data.map((s) => (
-                        <div key={s.id} 
-                        onClick={
-                            setSelectedSize(s.size)
-                        }
-                        className=' border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
-                            {s.size}
+                        {p?.size?.data.map((item) => (
+                        <div key={item.id} 
+                        className={`border rounded-md text-center py-3 font-medium
+                        ${item.enabled ? " hover:border-black cursor-pointer" : "cursor-not-allowed bg-black/[0.1] opacity-50"} 
+                        ${selectedSize === item.size ? "border-black" : ""}`}
+                        onClick={() => {
+                            setSelectedSize(item.size)
+                            setShowError(false)
+                        }}>
+                            {item.size}
                             </div>
                         ))}
                 
@@ -95,9 +99,13 @@ const ProductDetails = ({product, relativeProducts}) => {
 
                     {/* SHOW ERROR START */}
 
-                        <div className="text-red-600 mt-1">
+                      {
+                        showError && (
+                            <div className="text-red-600 mt-1">
                             Size selection is required
                         </div>
+                        )
+                      }
 
                     {/* SHOW ERROR END */}
                 </div>
@@ -106,6 +114,15 @@ const ProductDetails = ({product, relativeProducts}) => {
                 {/* ADD TO CART BUTTON START */}
                 <button
                     className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
+                    onClick={() => {
+                        if(!selectedSize) {
+                            setShowError(true)
+                            document.getElementById("sizesGrid").scrollIntoView({
+                                block: "center",
+                                behavior: 'smooth'
+                            })
+                        }
+                    }}
                 >
                     Add to Cart
                 </button>
@@ -130,7 +147,7 @@ const ProductDetails = ({product, relativeProducts}) => {
             {/* right column end */}
         </div>
 
-        
+        <RelatedProducts relativeProducts={relativeProducts}/>
 
     </Wrapper>
 </div>
