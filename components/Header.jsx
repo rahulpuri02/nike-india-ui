@@ -10,6 +10,7 @@ import { GrSearch } from "react-icons/gr";
 import { VscChromeClose } from "react-icons/vsc";
 import MobileMenu from './MobileMenu';
 import { fetchDataFromAPI } from '@/utils/api';
+import { useSelector } from 'react-redux';
 
 const Header = ({className}) => {
  
@@ -19,7 +20,8 @@ const Header = ({className}) => {
   const[LastScrollY, setLastScrollY] = useState(0);
   const[categories, setCategories] = useState(null);
 
-  
+  const { cartItems } = useSelector((state) => state.cart);
+
   const controlNavbar = () => {
    if(window.scrollY > 200) {
     if(window.scrollY > LastScrollY){
@@ -86,30 +88,26 @@ const Header = ({className}) => {
 
       <div className='flex items-center gap-[12px] md:gap-[9px] text-black'>
        
+                  {/* Icon start */}
+                  <Link href="/cart">
+                        <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+                            <BsCart className="text-[15px] md:text-[20px]" />
+                            {cartItems.length > 0 && (
+                                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                                    {cartItems.length}
+                                </div>
+                            )}
+                        </div>
+                    </Link>
 
-       {/*heart-Icon Start 
-      <div className='w-8 h-9 md:w-11 md:h-11 rounded-full flex justify-center items-center 
-      hover:bg-black/[0.05] cursor-pointer relative'>
-      <IoMdHeartEmpty  className='text-[18px] md:text-[21px]'/>
-       <div className='h-[14px] md:h-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] flex justify-center items-center py-0.5 px-1'>12</div>
-      </div>
-      */}
-
-        {/*Cart-Icon Start */}
-      <div className='w-8 h-9 md:w-11 md:h-11 rounded-full flex justify-center items-center 
-      hover:bg-black/[0.05] cursor-pointer relative'>
-      <BsCart  className='text-[15px] md:text-[20px]'/>
-       <div className='h-[14px] md:h-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] flex justify-center items-center py-[1px] px-1'>5</div>
-      </div>
-
-       {/*search-Icon Start  */}
+                    
+                        {/*search-Icon Start  */}
        <div className='w-8 h-8 md:w-11 md:h-11 rounded-full flex justify-center items-center 
       hover:bg-black/[0.05] cursor-pointer relative'>
       <GrSearch  className='text-[18px] md:text-[21px]'/>
       </div>
 
-       {/*Icons -end */}
-      
+                    {/* Icon end */}
       {/*Mobile View Start*/}
       <div className='flex md:hidden'>
      <div className='md:w-9 h-10 rounded-full flex justify-center items-center 

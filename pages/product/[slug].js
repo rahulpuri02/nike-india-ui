@@ -7,6 +7,9 @@ import { data } from 'autoprefixer'
 import React, { useState } from 'react'
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
+import { useSelector, useDispatch } from 'react-redux'
+import { addToCart } from '@/redux/cartSlice';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const ProductDetails = ({product, relativeProducts}) => {
@@ -16,9 +19,26 @@ const ProductDetails = ({product, relativeProducts}) => {
     const[selectedSize, setSelectedSize] = useState();
     const[showError, setShowError] = useState(false);
 
+    const dispatch = useDispatch()
+
+    const notify = () => toast.success('Success. Check your cart', {
+        duration: 1500,
+        position: 'bottom-center',
+      });
+
+      const error = () => toast.error('Please, select a size first.' ,{
+       
+        duration: 1500,
+        position: 'bottom-center',
+      })
+
+
   return (
     <div className="w-full md:py-20">
+   
+   <Toaster />
     <Wrapper>
+
         <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
             {/* left column start */}
             <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
@@ -112,17 +132,27 @@ const ProductDetails = ({product, relativeProducts}) => {
                 {/* PRODUCT SIZE RANGE END */}
 
                 {/* ADD TO CART BUTTON START */}
+
                 <button
                     className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
                     onClick={() => {
                         if(!selectedSize) {
                             setShowError(true)
+                            error()
                             document.getElementById("sizesGrid").scrollIntoView({
                                 block: "center",
                                 behavior: 'smooth'
                             })
                         }
+                        else {
+                        dispatch(addToCart({
+                            ...product?.data?.[0],
+                            selectedSize,
+                            oneQuantityPrice: p.price
+                        }))
+                        notify()
                     }}
+                }
                 >
                     Add to Cart
                 </button>
@@ -148,7 +178,7 @@ const ProductDetails = ({product, relativeProducts}) => {
         </div>
 
         <RelatedProducts relativeProducts={relativeProducts}/>
-
+   
     </Wrapper>
 </div>
   )
