@@ -1,9 +1,13 @@
 import React from "react";
 import Wrapper from "@/components/Wrapper";
 import Link from "next/link";
+import Head from "next/head";
 
 const Success = () => {
-    return (
+    return (<>
+        <Head>
+        <title>Success | Nike IN</title>
+      </Head>
         <div className="min-h-[650px] flex items-center">
             <Wrapper>
                 <div className="max-w-[600px] rounded-lg p-5 border border-black mx-auto flex flex-col">
@@ -24,6 +28,7 @@ const Success = () => {
                 </div>
             </Wrapper>
         </div>
+        </>
     );
 };
 

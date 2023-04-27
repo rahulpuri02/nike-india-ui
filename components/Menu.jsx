@@ -11,13 +11,6 @@ const Menu = ({showCatMenu, setShowCatMenu, categories}) => {
         { id: 3, name: "Contact", url: "/contact" },
     ]
 
-    const subMenuData = [
-        { id: 1, name: "Jordan Series", doc_count: 11 },
-        { id: 2, name: "Sneakers", doc_count: 8 },
-        { id: 3, name: "Running Shoes", doc_count: 64 },
-        { id: 4, name: "Football Shoes", doc_count: 107 },
-
-    ]
   return (
     <ul className=' hidden md:flex items-center gap-8 font-medium text-black'>
      {

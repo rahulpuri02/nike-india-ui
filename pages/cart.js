@@ -6,6 +6,8 @@ import CartItem from "@/components/CartItem";
 import { useSelector } from "react-redux";
 import {loadStripe} from '@stripe/stripe-js';
 import {makePaymentRequest} from '@/utils/api';
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+import Head from "next/head";
 
 
 const stripePromise = loadStripe(
@@ -32,6 +34,7 @@ const cart = () => {
             await stripe.redirectToCheckout({
                 sessionId: res.stripeSession.id,
             });
+            setLoading(false);
         } catch (error) {
             setLoading(false);
             console.log(error);
@@ -41,7 +44,10 @@ const cart = () => {
     
 
   return (
-
+    <>
+    <Head>
+    <title>View Cart | Nike IN</title>
+  </Head>
     <div className="w-full md:py-20">
     <Wrapper>
 
@@ -144,7 +150,7 @@ const cart = () => {
            }
         </Wrapper>
      </div>
-
+ </>
   )
 }
 

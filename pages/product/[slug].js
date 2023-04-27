@@ -7,9 +7,10 @@ import { data } from 'autoprefixer'
 import React, { useState } from 'react'
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addToCart } from '@/redux/cartSlice';
 import toast, { Toaster } from 'react-hot-toast';
+import Head from 'next/head'
 
 
 const ProductDetails = ({product, relativeProducts}) => {
@@ -34,6 +35,10 @@ const ProductDetails = ({product, relativeProducts}) => {
 
 
   return (
+    <>
+    <Head>
+        <title>{`${p.name} | Nike IN`}</title>
+      </Head>
     <div className="w-full md:py-20">
    
    <Toaster />
@@ -181,6 +186,7 @@ const ProductDetails = ({product, relativeProducts}) => {
    
     </Wrapper>
 </div>
+</>
   )
 }
 
