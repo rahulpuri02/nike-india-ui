@@ -1,7 +1,8 @@
 export const getDiscountedPricePercent = (ogPrice, discountPrice) => {
-   const discount = ogPrice - discountPrice;
 
-   const discountPercantage = (discount/ogPrice) * 100;
+   const discount = ogPrice - discountPrice
 
-   return discountPercantage.toFixed(0);
+   const getDiscountPercentage = (discount/ogPrice) * 100
+
+   return getDiscountPercentage.toFixed(0);
 }

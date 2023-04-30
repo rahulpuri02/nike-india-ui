@@ -6,16 +6,14 @@ import CartItem from "@/components/CartItem";
 import { useSelector } from "react-redux";
 import {loadStripe} from '@stripe/stripe-js';
 import {makePaymentRequest} from '@/utils/api';
-import { FaArrowAltCircleLeft } from "react-icons/fa";
 import Head from "next/head";
 
-
+const cart = () => {
+     
 const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-const cart = () => {
-     
     const[loading, setLoading] = useState(false);
 
     const { cartItems } = useSelector((state) => state.cart);
