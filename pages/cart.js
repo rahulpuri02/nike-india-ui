@@ -7,16 +7,21 @@ import { useSelector } from "react-redux";
 import {loadStripe} from '@stripe/stripe-js';
 import {makePaymentRequest} from '@/utils/api';
 import Head from "next/head";
+import { useEffect } from "react";
 
 const cart = () => {
      
-const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
-
     const[loading, setLoading] = useState(false);
 
     const { cartItems } = useSelector((state) => state.cart);
+    
+    const stripePromise = loadStripe(
+        process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    )  
+
+    useEffect(() => {
+        stripePromise
+     }, []);
 
     const subTotal = useMemo(() => {
       return cartItems.reduce((total, val) => total + val.attributes.price, 0)

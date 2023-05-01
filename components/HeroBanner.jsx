@@ -1,6 +1,7 @@
 import React from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import Image from 'next/image';
 
 const HeroBanner = () => {
   return (
@@ -14,7 +15,11 @@ const HeroBanner = () => {
           showArrows={false}
           >
                 <div>
-                    <img
+                <Image
+                alt='banner'
+                priority
+                    width="1920"
+                    height="800"
                     className="aspect-[16/10] md:aspect-auto"
                      src="/slide-1.png"  />
                    <div className="shop-now">
@@ -22,7 +27,11 @@ const HeroBanner = () => {
                     </div>
                 </div>
                 <div>
-                    <img
+                    <Image
+                    priority
+                    alt='banner'
+                    width="1920"
+                    height="800"
                     className="aspect-[16/10] md:aspect-auto"
                      src="/slide-2.png"  />
                    <div className="shop-now">
@@ -30,7 +39,11 @@ const HeroBanner = () => {
                     </div>
                 </div>
                 <div>
-                    <img
+                <Image
+                priority
+                alt='banner'
+                    width="1920"
+                    height="800"
                     className="aspect-[16/10] md:aspect-auto"
                      src="/slide-3.png"  />
                    <div className="shop-now">
